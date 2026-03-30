@@ -3,229 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pondy Parottas | Authentic Taste</title>
+    <title>Pondy Parottas | 140+ Signature Items</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap" rel="stylesheet">
     <style>
-        :root { --red: #d32f2f; --gold: #ffc107; --dark: #121212; --bg: #ffffff; }
-        * { box-sizing: border-box; font-family: 'Outfit', sans-serif; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--dark); overflow-x: hidden; }
+        :root { --red: #d32f2f; --gold: #ffc107; --bg: #f8f9fa; }
+        * { box-sizing: border-box; font-family: 'Outfit', sans-serif; margin: 0; padding: 0; transition: 0.3s; }
+        body { background: var(--bg); color: #1a1a1a; }
 
-        /* Modern Nav */
         header { background: white; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 900; font-size: 1.6rem; color: var(--red); cursor: pointer; letter-spacing: -1px; }
-        nav { display: flex; gap: 20px; }
-        nav a { text-decoration: none; color: #333; font-weight: 600; cursor: pointer; padding: 8px 15px; border-radius: 10px; font-size: 14px; }
-        nav a.active { background: var(--red); color: white; }
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--red); letter-spacing: -1px; }
 
-        /* Pages */
-        .page { display: none; padding: 30px 5%; animation: fadeIn 0.4s ease; max-width: 1300px; margin: auto; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .container { padding: 20px 5%; max-width: 1300px; margin: auto; }
+        .search-bar { width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #ddd; margin-bottom: 30px; font-size: 1rem; outline: none; background: white; }
 
-        /* Hero */
-        .hero { height: 65vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; border-radius: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; margin-bottom: 40px; }
-        .hero h1 { font-size: 3.5rem; line-height: 1; }
-        .btn-order { background: var(--red); color: white; padding: 18px 45px; border-radius: 50px; border: none; font-weight: 900; font-size: 1.1rem; cursor: pointer; margin-top: 25px; box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4); }
-
-        /* Menu System */
-        .search-container { position: sticky; top: 85px; z-index: 999; background: white; padding: 15px 0; }
-        .search-bar { width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #eee; font-size: 1rem; outline: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .cat-title { font-size: 1.8rem; margin: 40px 0 20px; color: var(--red); border-left: 6px solid var(--gold); padding-left: 15px; text-transform: uppercase; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
-        /* Cards */
-        .item-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; }
-        .item-img { width: 100%; height: 200px; object-fit: cover; }
-        .item-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .item-name { font-weight: 700; font-size: 1.1rem; height: 3rem; overflow: hidden; margin-bottom: 5px; }
-        .item-price { font-weight: 900; font-size: 1.3rem; color: #111; margin-bottom: 15px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .item-img { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+        .info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .item-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; min-height: 45px; }
+        .price { font-weight: 900; font-size: 1.2rem; color: #333; margin-bottom: 15px; }
 
-        /* Advanced Cart Controls */
-        .qty-box { display: flex; align-items: center; justify-content: space-between; background: #f5f6fa; border-radius: 12px; padding: 5px; }
-        .qty-btn { width: 35px; height: 35px; border: none; background: white; border-radius: 8px; font-weight: 900; cursor: pointer; color: var(--red); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .add-btn { background: var(--red); color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; }
+        .qty-box { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 12px; padding: 5px; }
+        .q-btn { width: 35px; height: 35px; border: none; background: white; border-radius: 8px; font-weight: 900; cursor: pointer; color: var(--red); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .add-btn { background: var(--red); color: white; border: none; padding: 10px; border-radius: 12px; font-weight: 800; cursor: pointer; }
 
-        /* Locations */
-        .loc-card { background: #f9f9f9; padding: 25px; border-radius: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
-        .map-btn { background: #222; color: white; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 13px; }
-
-        /* Fixed Cart Bar */
-        .cart-bar { position: fixed; bottom: 30px; left: 5%; right: 5%; max-width: 600px; margin: auto; background: #25d366; color: white; padding: 20px 30px; border-radius: 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4); z-index: 2000; cursor: pointer; }
+        .cart-bar { position: fixed; bottom: 20px; left: 5%; right: 5%; max-width: 500px; margin: auto; background: #25d366; color: white; padding: 18px 25px; border-radius: 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 2000; cursor: pointer; font-weight: 900; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo" onclick="show('home')">PONDY PAROTTAS</div>
-    <nav>
-        <a onclick="show('home')" id="n-home">Home</a>
-        <a onclick="show('menu')" id="n-menu">Menu</a>
-        <a onclick="show('loc')" id="n-loc">Locations</a>
-    </nav>
+    <div class="logo">PONDY PAROTTAS</div>
+    <div style="font-size: 12px; font-weight: 700; background: #eee; padding: 5px 10px; border-radius: 5px;">HYDERABAD</div>
 </header>
 
-<div id="home" class="page active">
-    <div class="hero">
-        <h1>Taste of <span style="color:var(--gold)">Pondicherry</span></h1>
-        <p style="font-size: 1.2rem; margin-top: 10px;">Authentic Ambur Biryani & Parottas in Hyderabad</p>
-        <button class="btn-order" onclick="show('menu')">ORDER ONLINE NOW</button>
-    </div>
-</div>
-
-<div id="menu" class="page">
-    <div class="search-container">
-        <input type="text" id="search" class="search-bar" placeholder="Search 130+ items (Biryani, Kalaki, Dosa...)" onkeyup="filter()">
-    </div>
-    <div id="menu-render"></div>
-</div>
-
-<div id="loc" class="page">
-    <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Find Us in Hyderabad</h2>
-    <div id="loc-render"></div>
+<div class="container">
+    <input type="text" id="search" class="search-bar" placeholder="Search 140+ items (Biryani, Parotta, Fish...)" onkeyup="filter()">
+    <div id="menu-container"></div>
 </div>
 
 <div class="cart-bar" id="cart-bar" onclick="checkout()">
-    <div id="cart-info">0 Items | ₹0</div>
-    <div style="font-weight:900;">CONFIRM ORDER ON WHATSAPP ➔</div>
+    <span id="cart-info">0 Items | ₹0</span>
+    <span>CONFIRM ORDER ➔</span>
 </div>
 
 <script>
-    const data = {
-        "Ambur Special Biryani": {
-            img: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Ambur Chicken Biryani", p:240}, {n:"Ambur Mutton Spl Biryani", p:320}, 
-                {n:"Ambur Lollipop Biryani", p:250}, {n:"Ambur Prawn Biryani", p:330}, {n:"Ambur Biryani Rice & Egg", p:190},
-                {n:"Ambur Chicken Fry Piece Biryani", p:250}
-            ]
-        },
-        "Signature Parottas": {
-            img: "https://images.unsplash.com/photo-1626132646529-500637532537?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Nool Parotta (2 Pcs)", p:50}, {n:"Chicken Kothu Parotta", p:280}, {n:"Mutton Kothu Parotta", p:320},
-                {n:"Chicken Lappa", p:290}, {n:"Mutton Lappa", p:330}, {n:"Madurai Mutton Kari Dosa", p:190}
-            ]
-        },
-        "Soups (12 Items)": {
-            img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Hot & Sour Soup", p:160}, {n:"Manchow Soup", p:160}, {n:"Chicken Manchow", p:180},
-                {n:"Chettinad Crab Soup", p:200}, {n:"Mutton Bone Soup", p:200}, {n:"Burmese Big Soup", p:260}
-            ]
-        },
-        "Non-Veg Starters": {
-            img: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Tamilnadu Chicken 65", p:310}, {n:"Chicken Lollipop", p:310}, {n:"Apollo Fish", p:420},
-                {n:"Squid Fry", p:390}, {n:"Crab Fry", p:390}, {n:"Prawn 65", p:420}
-            ]
-        },
-        "Tiffins & More": {
-            img: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Medu Vada Plate", p:70}, {n:"Ghee Pongal", p:80}, {n:"Wheat Poori + Mutton Kheema", p:240},
-                {n:"Egg Uttapam + Mutton Kheema", p:280}
-            ]
-        },
-        "Drinks & Desserts": {
-            img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80",
-            items: [
-                {n:"Kadak Chai", p:40}, {n:"Kerala Kulukki", p:99}, {n:"Brownie Milkshake", p:199}, {n:"Cashew Junnu", p:110}
-            ]
-        }
+    const fullMenu = {
+        "Ambur Special Biryani": [
+            {n:"Ambur Chicken Biryani", p:240}, {n:"Ambur Mutton Spl Biryani", p:320}, {n:"Ambur Lollipop Biryani", p:250}, {n:"Ambur Chicken Fry Piece Biryani", p:250}, {n:"Ambur Prawn Biryani", p:330}, {n:"Ambur Biryani Rice & Egg", p:190}
+        ],
+        "Signature Parottas": [
+            {n:"Nool Parotta (2 Pcs)", p:50}, {n:"Chicken Kothu Parotta", p:280}, {n:"Mutton Kothu Parotta", p:320}, {n:"Chicken Lappa", p:290}, {n:"Mutton Lappa", p:330}, {n:"Egg Roti Canai", p:220}, {n:"Chicken Roti Canai", p:280}
+        ],
+        "Soups": [
+            {n:"Hot & Sour Soup", p:160}, {n:"Manchow Soup", p:160}, {n:"Sweetcorn Soup", p:160}, {n:"Lemon Coriander", p:160}, {n:"Chettinad Crab Soup", p:200}, {n:"Mutton Bone Soup", p:200}, {n:"Prawn Noodle Soup", p:220}, {n:"Mix Seafood Soup", p:260}
+        ],
+        "Veg Starters": [
+            {n:"Veg Manchurian", p:230}, {n:"Crispy Corn", p:220}, {n:"Gobi Manchurian", p:260}, {n:"Tamilnadu Gobi 65", p:270}, {n:"Chilly Babycorn", p:270}, {n:"Butter Garlic Mushroom", p:280}, {n:"Paneer 65", p:320}
+        ],
+        "Non-Veg Starters": [
+            {n:"Tamilnadu Chicken 65", p:310}, {n:"Chicken Lollipop", p:310}, {n:"Chicken Majestic", p:330}, {n:"Drums Of Heaven", p:330}, {n:"Nethili Fish Fry", p:310}, {n:"Apollo Fish", p:420}, {n:"Karaikal Squid Fry", p:390}, {n:"Chettinadu Crab Fry", p:390}, {n:"Prawn 65", p:420}
+        ],
+        "What An Egg": [
+            {n:"Master Egg Kalaki", p:80}, {n:"Saarayakadai Muttai", p:230}, {n:"Regular Omelette", p:80}, {n:"Egg Bhurji", p:120}, {n:"Chilly Egg", p:220}
+        ],
+        "Tiffins": [
+            {n:"Medu Vada Plate", p:70}, {n:"Ghee Pongal", p:80}, {n:"Madurai Mutton Kari Dosa", p:190}, {n:"Kal Dosa + Chicken Curry", p:180}, {n:"Wheat Poori + Mutton Kheema", p:240}
+        ],
+        "Drinks & Desserts": [
+            {n:"Kadak Chai", p:40}, {n:"Kerala Kulukki", p:99}, {n:"Brownie Milkshake", p:199}, {n:"Oreo Milkshake", p:169}, {n:"Cashew Junnu", p:110}
+        ]
     };
-
-    const branches = [
-        {n:"Kukatpally", a:"Near Manjeera Mall", q:"Pondy+Parottas+KPHB"},
-        {n:"Hitech City", a:"HITEX Road, Kothaguda", q:"Pondy+Parottas+Hitech+City"},
-        {n:"SR Nagar", a:"Beside Metro Station", q:"Pondy+Parottas+SR+Nagar"},
-        {n:"Manikonda", a:"Sreeram Nagar Colony", q:"Pondy+Parottas+Manikonda"},
-        {n:"Chanda Nagar", a:"Pipeline Road", q:"Pondy+Parottas+Chanda+Nagar"},
-        {n:"Miyapur", a:"New Outlet Opening", q:"Pondy+Parottas+Miyapur"}
-    ];
 
     let cart = {};
 
-    function show(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.getElementById('n-'+id).classList.add('active');
-        window.scrollTo(0,0);
-    }
-
     function init() {
-        // Render Menu
-        const menuEl = document.getElementById('menu-render');
-        for (let cat in data) {
+        const container = document.getElementById('menu-container');
+        for (let cat in fullMenu) {
             let html = `<h2 class="cat-title">${cat}</h2><div class="grid">`;
-            data[cat].items.forEach((item, idx) => {
-                const id = btoa(item.n);
+            fullMenu[cat].forEach((item, index) => {
+                const id = btoa(item.n).substring(0,8);
+                // Unique image generator based on name
+                const img = `https://loremflickr.com/400/250/indian,food,${item.n.split(' ')[0].toLowerCase()}?lock=${index + Math.random()}`;
+                
                 html += `
-                <div class="item-card" data-search="${item.n.toLowerCase()}">
-                    <img src="${data[cat].img}" class="item-img" alt="${item.n}">
-                    <div class="item-info">
+                <div class="card" data-search="${item.n.toLowerCase()}">
+                    <img src="${img}" class="item-img" alt="${item.n}">
+                    <div class="info">
                         <div class="item-name">${item.n}</div>
-                        <div class="item-price">₹${item.p}</div>
-                        <div id="ctrl-${id}">
-                            <button class="add-btn" onclick="modify('${id}', '${item.n}', ${item.p}, 1)">ADD +</button>
+                        <div class="price">₹${item.p}</div>
+                        <div id="btn-${id}">
+                            <button class="add-btn" onclick="update('${id}', '${item.n}', ${item.p}, 1)">ADD TO CART</button>
                         </div>
                     </div>
                 </div>`;
             });
-            menuEl.innerHTML += html + `</div>`;
+            container.innerHTML += html + `</div>`;
         }
-        // Render Locs
-        const locEl = document.getElementById('loc-render');
-        branches.forEach(b => {
-            locEl.innerHTML += `<div class="loc-card">
-                <div><h3>${b.n}</h3><p>${b.a}</p></div>
-                <a href="https://www.google.com/maps/search/${b.q}" target="_blank" class="map-btn">VIEW MAP 📍</a>
-            </div>`;
-        });
     }
 
-    function modify(id, name, price, change) {
+    function update(id, name, price, change) {
         if (!cart[id]) cart[id] = { name, price, qty: 0 };
         cart[id].qty += change;
         
-        const ctrl = document.getElementById('ctrl-'+id);
+        const box = document.getElementById('btn-'+id);
         if (cart[id].qty > 0) {
-            ctrl.innerHTML = `<div class="qty-box">
-                <button class="qty-btn" onclick="modify('${id}','${name}',${price},-1)">-</button>
-                <span style="font-weight:900">${cart[id].qty}</span>
-                <button class="qty-btn" onclick="modify('${id}','${name}',${price},1)">+</button>
+            box.innerHTML = `
+            <div class="qty-box">
+                <button class="q-btn" onclick="update('${id}','${name}',${price},-1)">-</button>
+                <span style="font-weight:900;">${cart[id].qty}</span>
+                <button class="q-btn" onclick="update('${id}','${name}',${price},1)">+</button>
             </div>`;
         } else {
             delete cart[id];
-            ctrl.innerHTML = `<button class="add-btn" onclick="modify('${id}','${name}',${price},1)">ADD +</button>`;
+            box.innerHTML = `<button class="add-btn" onclick="update('${id}','${name}',${price},1)">ADD TO CART</button>`;
         }
-        updateBar();
-    }
-
-    function updateBar() {
+        
         let count = 0, total = 0;
-        for (let key in cart) { count += cart[key].qty; total += (cart[key].qty * cart[key].price); }
-        const bar = document.getElementById('cart-bar');
-        bar.style.display = count > 0 ? 'flex' : 'none';
+        for (let k in cart) { count += cart[k].qty; total += (cart[k].qty * cart[k].price); }
+        document.getElementById('cart-bar').style.display = count > 0 ? 'flex' : 'none';
         document.getElementById('cart-info').innerText = `${count} Items | ₹${total}`;
     }
 
     function filter() {
         const q = document.getElementById('search').value.toLowerCase();
-        document.querySelectorAll('.item-card').forEach(c => {
+        document.querySelectorAll('.card').forEach(c => {
             c.style.display = c.dataset.search.includes(q) ? 'flex' : 'none';
         });
     }
 
     function checkout() {
-        let bill = "*NEW ORDER FROM PONDY PAROTTAS*%0A--------------------------%0A";
-        let total = 0;
-        for (let key in cart) {
-            bill += `*${cart[key].qty} x ${cart[key].name}* - ₹${cart[key].qty * cart[key].price}%0A`;
-            total += cart[key].qty * cart[key].price;
-        }
-        bill += `--------------------------%0A*TOTAL: ₹${total}*%0A%0APlease confirm my order!`;
+        let bill = "*WEBSITE ORDER*%0A------------------%0A";
+        for (let k in cart) { bill += `*${cart[k].qty} x ${cart[k].name}* - ₹${cart[k].qty * cart[k].price}%0A`; }
+        bill += `%0A*TOTAL: ${document.getElementById('cart-info').innerText.split('|')[1]}*`;
         window.open(`https://wa.me/918186004000?text=${bill}`);
     }
 
