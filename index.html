@@ -3,108 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pondy Parottas | Premium Ordering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <title>Pondy Parottas | Authentic Taste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap" rel="stylesheet">
     <style>
-        :root { --brand: #d32f2f; --accent: #ffc107; --bg: #ffffff; --card: #f9f9f9; }
-        * { box-sizing: border-box; font-family: 'Outfit', sans-serif; margin: 0; padding: 0; transition: all 0.3s ease; }
-        body { background: var(--bg); color: #1e272e; overflow-x: hidden; }
+        :root { --red: #d32f2f; --gold: #ffc107; --dark: #121212; --bg: #ffffff; }
+        * { box-sizing: border-box; font-family: 'Outfit', sans-serif; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--dark); overflow-x: hidden; }
 
-        /* Navigation */
-        header { background: white; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 900; font-size: 1.5rem; color: var(--brand); cursor: pointer; }
-        nav { display: flex; gap: 15px; }
-        nav a { text-decoration: none; color: #444; font-weight: 600; font-size: 14px; cursor: pointer; padding: 5px 10px; border-radius: 8px; }
-        nav a:hover, nav a.active-nav { background: var(--brand); color: white; }
+        /* Modern Nav */
+        header { background: white; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.6rem; color: var(--red); cursor: pointer; letter-spacing: -1px; }
+        nav { display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: #333; font-weight: 600; cursor: pointer; padding: 8px 15px; border-radius: 10px; font-size: 14px; }
+        nav a.active { background: var(--red); color: white; }
 
-        /* Page Transitions */
-        .page { display: none; opacity: 0; padding: 20px 5%; max-width: 1200px; margin: auto; }
-        .page.active { display: block; opacity: 1; animation: fadeIn 0.5s forwards; }
+        /* Pages */
+        .page { display: none; padding: 30px 5%; animation: fadeIn 0.4s ease; max-width: 1300px; margin: auto; }
+        .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Home Page */
-        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1541014741259-df549af00c87?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; border-radius: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; margin-top: 10px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-        .btn-main { background: var(--brand); color: white; padding: 15px 40px; border-radius: 50px; border: none; font-weight: 800; cursor: pointer; margin-top: 20px; font-size: 1rem; }
+        /* Hero */
+        .hero { height: 65vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; border-radius: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-size: 3.5rem; line-height: 1; }
+        .btn-order { background: var(--red); color: white; padding: 18px 45px; border-radius: 50px; border: none; font-weight: 900; font-size: 1.1rem; cursor: pointer; margin-top: 25px; box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4); }
 
-        /* Menu Section */
-        .search-bar { width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #eee; margin: 20px 0; font-size: 1rem; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .category-header { font-size: 1.8rem; margin: 40px 0 20px; color: var(--brand); border-left: 6px solid var(--accent); padding-left: 15px; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        
-        .item-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #eee; position: relative; display: flex; flex-direction: column; }
-        .item-img { width: 100%; height: 200px; object-fit: cover; background: #eee; }
-        .item-info { padding: 20px; flex-grow: 1; }
-        .item-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; height: 2.8rem; overflow: hidden; }
-        .item-price { font-weight: 900; font-size: 1.3rem; color: #000; margin-bottom: 15px; }
+        /* Menu System */
+        .search-container { position: sticky; top: 85px; z-index: 999; background: white; padding: 15px 0; }
+        .search-bar { width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #eee; font-size: 1rem; outline: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .cat-title { font-size: 1.8rem; margin: 40px 0 20px; color: var(--red); border-left: 6px solid var(--gold); padding-left: 15px; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
 
-        /* Quantity Controls */
-        .controls { display: flex; align-items: center; gap: 15px; }
-        .add-btn { background: var(--brand); color: white; border: none; padding: 10px 25px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; }
-        .qty-wrap { display: flex; align-items: center; background: #f1f2f6; border-radius: 12px; width: 100%; justify-content: space-between; padding: 5px; }
-        .qty-btn { width: 35px; height: 35px; border: none; background: white; border-radius: 8px; font-weight: 900; cursor: pointer; color: var(--brand); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* Cards */
+        .item-card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .item-img { width: 100%; height: 200px; object-fit: cover; }
+        .item-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .item-name { font-weight: 700; font-size: 1.1rem; height: 3rem; overflow: hidden; margin-bottom: 5px; }
+        .item-price { font-weight: 900; font-size: 1.3rem; color: #111; margin-bottom: 15px; }
+
+        /* Advanced Cart Controls */
+        .qty-box { display: flex; align-items: center; justify-content: space-between; background: #f5f6fa; border-radius: 12px; padding: 5px; }
+        .qty-btn { width: 35px; height: 35px; border: none; background: white; border-radius: 8px; font-weight: 900; cursor: pointer; color: var(--red); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .add-btn { background: var(--red); color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; }
 
         /* Locations */
-        .loc-card { background: var(--card); padding: 25px; border-radius: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
-        .map-btn { background: #2d3436; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 13px; }
+        .loc-card { background: #f9f9f9; padding: 25px; border-radius: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
+        .map-btn { background: #222; color: white; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 13px; }
 
-        /* Floating Cart Bar */
-        .cart-bar { position: fixed; bottom: 30px; left: 5%; right: 5%; max-width: 600px; margin: auto; background: #25d366; color: white; padding: 18px 30px; border-radius: 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 2000; cursor: pointer; }
+        /* Fixed Cart Bar */
+        .cart-bar { position: fixed; bottom: 30px; left: 5%; right: 5%; max-width: 600px; margin: auto; background: #25d366; color: white; padding: 20px 30px; border-radius: 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4); z-index: 2000; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo" onclick="switchPage('home')">Pondy Parottas</div>
+    <div class="logo" onclick="show('home')">PONDY PAROTTAS</div>
     <nav>
-        <a onclick="switchPage('home')" id="nav-home" class="active-nav">Home</a>
-        <a onclick="switchPage('menu')" id="nav-menu">Menu</a>
-        <a onclick="switchPage('locations')" id="nav-locations">Locations</a>
+        <a onclick="show('home')" id="n-home">Home</a>
+        <a onclick="show('menu')" id="n-menu">Menu</a>
+        <a onclick="show('loc')" id="n-loc">Locations</a>
     </nav>
 </header>
 
-<div id="page-home" class="page active">
+<div id="home" class="page active">
     <div class="hero">
-        <h1>Authentic Flavors</h1>
-        <p>130+ Signature Items Serving Across Hyderabad</p>
-        <button class="btn-main" onclick="switchPage('menu')">ORDER NOW</button>
-    </div>
-    <div style="text-align:center; padding: 60px 0;">
-        <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Taste the Heritage</h2>
-        <p style="color: #666; max-width: 700px; margin: auto;">From the streets of Pondicherry to your plate in Hyderabad. We specialize in Ambur Biryani, Nool Parotta, and Coastal Starters.</p>
+        <h1>Taste of <span style="color:var(--gold)">Pondicherry</span></h1>
+        <p style="font-size: 1.2rem; margin-top: 10px;">Authentic Ambur Biryani & Parottas in Hyderabad</p>
+        <button class="btn-order" onclick="show('menu')">ORDER ONLINE NOW</button>
     </div>
 </div>
 
-<div id="page-menu" class="page">
-    <input type="text" id="search" class="search-bar" placeholder="Search for food (Biryani, Parotta, Fish...)" onkeyup="doSearch()">
-    <div id="menu-area"></div>
+<div id="menu" class="page">
+    <div class="search-container">
+        <input type="text" id="search" class="search-bar" placeholder="Search 130+ items (Biryani, Kalaki, Dosa...)" onkeyup="filter()">
+    </div>
+    <div id="menu-render"></div>
 </div>
 
-<div id="page-locations" class="page">
-    <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Our Branches</h2>
-    <div id="loc-area"></div>
+<div id="loc" class="page">
+    <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Find Us in Hyderabad</h2>
+    <div id="loc-render"></div>
 </div>
 
-<div class="cart-bar" id="cart-bar" onclick="whatsappMe()">
-    <div><span id="cart-count">0</span> Items | <span id="cart-price">₹0</span></div>
-    <div style="font-weight:900;">CONFIRM ORDER ➔</div>
+<div class="cart-bar" id="cart-bar" onclick="checkout()">
+    <div id="cart-info">0 Items | ₹0</div>
+    <div style="font-weight:900;">CONFIRM ORDER ON WHATSAPP ➔</div>
 </div>
 
 <script>
-    const menuData = {
-        "Ambur Biryani Specials": {
-            img: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?q=80&w=800&auto=format&fit=crop",
+    const data = {
+        "Ambur Special Biryani": {
+            img: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&w=600&q=80",
             items: [
                 {n:"Ambur Chicken Biryani", p:240}, {n:"Ambur Mutton Spl Biryani", p:320}, 
-                {n:"Ambur Lollipop Biryani", p:250}, {n:"Ambur Prawn Biryani", p:330}, {n:"Ambur Biryani Rice & Egg", p:190}
+                {n:"Ambur Lollipop Biryani", p:250}, {n:"Ambur Prawn Biryani", p:330}, {n:"Ambur Biryani Rice & Egg", p:190},
+                {n:"Ambur Chicken Fry Piece Biryani", p:250}
             ]
         },
         "Signature Parottas": {
-            img: "https://images.unsplash.com/photo-1626132646529-500637532537?q=80&w=800&auto=format&fit=crop",
+            img: "https://images.unsplash.com/photo-1626132646529-500637532537?auto=format&fit=crop&w=600&q=80",
             items: [
-                {n:"Nool Parotta (2 Pcs)", p:50}, {n:"Madurai Mutton Kari Dosa", p:190}, 
-                {n:"Chicken Kothu Parotta", p:280}, {n:"Mutton Kothu Parotta", p:320}, {n:"Chicken Lappa", p:290}
+                {n:"Nool Parotta (2 Pcs)", p:50}, {n:"Chicken Kothu Parotta", p:280}, {n:"Mutton Kothu Parotta", p:320},
+                {n:"Chicken Lappa", p:290}, {n:"Mutton Lappa", p:330}, {n:"Madurai Mutton Kari Dosa", p:190}
             ]
         },
-        "What An Egg": {
-            img: "
+        "Soups (12 Items)": {
+            img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
+            items: [
+                {n:"Hot & Sour Soup", p:160}, {n:"Manchow Soup", p:160}, {n:"Chicken Manchow", p:180},
+                {n:"Chettinad Crab Soup", p:200}, {n:"Mutton Bone Soup", p:200}, {n:"Burmese Big Soup", p:260}
+            ]
+        },
+        "Non-Veg Starters": {
+            img: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=600&q=80",
+            items: [
+                {n:"Tamilnadu Chicken 65", p:310}, {n:"Chicken Lollipop", p:310}, {n:"Apollo Fish", p:420},
+                {n:"Squid Fry", p:390}, {n:"Crab Fry", p:390}, {n:"Prawn 65", p:420}
+            ]
+        },
+        "Tiffins & More": {
+            img: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80",
+            items: [
+                {n:"Medu Vada Plate", p:70}, {n:"Ghee Pongal", p:80}, {n:"Wheat Poori + Mutton Kheema", p:240},
+                {n:"Egg Uttapam + Mutton Kheema", p:280}
+            ]
+        },
+        "Drinks & Desserts": {
+            img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80",
+            items: [
+                {n:"Kadak Chai", p:40}, {n:"Kerala Kulukki", p:99}, {n:"Brownie Milkshake", p:199}, {n:"Cashew Junnu", p:110}
+            ]
+        }
+    };
+
+    const branches = [
+        {n:"Kukatpally", a:"Near Manjeera Mall", q:"Pondy+Parottas+KPHB"},
+        {n:"Hitech City", a:"HITEX Road, Kothaguda", q:"Pondy+Parottas+Hitech+City"},
+        {n:"SR Nagar", a:"Beside Metro Station", q:"Pondy+Parottas+SR+Nagar"},
+        {n:"Manikonda", a:"Sreeram Nagar Colony", q:"Pondy+Parottas+Manikonda"},
+        {n:"Chanda Nagar", a:"Pipeline Road", q:"Pondy+Parottas+Chanda+Nagar"},
+        {n:"Miyapur", a:"New Outlet Opening", q:"Pondy+Parottas+Miyapur"}
+    ];
+
+    let cart = {};
+
+    function show(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.getElementById('n-'+id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function init() {
+        // Render Menu
+        const menuEl = document.getElementById('menu-render');
+        for (let cat in data) {
+            let html = `<h2 class="cat-title">${cat}</h2><div class="grid">`;
+            data[cat].items.forEach((item, idx) => {
+                const id = btoa(item.n);
+                html += `
+                <div class="item-card" data-search="${item.n.toLowerCase()}">
+                    <img src="${data[cat].img}" class="item-img" alt="${item.n}">
+                    <div class="item-info">
+                        <div class="item-name">${item.n}</div>
+                        <div class="item-price">₹${item.p}</div>
+                        <div id="ctrl-${id}">
+                            <button class="add-btn" onclick="modify('${id}', '${item.n}', ${item.p}, 1)">ADD +</button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            menuEl.innerHTML += html + `</div>`;
+        }
+        // Render Locs
+        const locEl = document.getElementById('loc-render');
+        branches.forEach(b => {
+            locEl.innerHTML += `<div class="loc-card">
+                <div><h3>${b.n}</h3><p>${b.a}</p></div>
+                <a href="https://www.google.com/maps/search/${b.q}" target="_blank" class="map-btn">VIEW MAP 📍</a>
+            </div>`;
+        });
+    }
+
+    function modify(id, name, price, change) {
+        if (!cart[id]) cart[id] = { name, price, qty: 0 };
+        cart[id].qty += change;
+        
+        const ctrl = document.getElementById('ctrl-'+id);
+        if (cart[id].qty > 0) {
+            ctrl.innerHTML = `<div class="qty-box">
+                <button class="qty-btn" onclick="modify('${id}','${name}',${price},-1)">-</button>
+                <span style="font-weight:900">${cart[id].qty}</span>
+                <button class="qty-btn" onclick="modify('${id}','${name}',${price},1)">+</button>
+            </div>`;
+        } else {
+            delete cart[id];
+            ctrl.innerHTML = `<button class="add-btn" onclick="modify('${id}','${name}',${price},1)">ADD +</button>`;
+        }
+        updateBar();
+    }
+
+    function updateBar() {
+        let count = 0, total = 0;
+        for (let key in cart) { count += cart[key].qty; total += (cart[key].qty * cart[key].price); }
+        const bar = document.getElementById('cart-bar');
+        bar.style.display = count > 0 ? 'flex' : 'none';
+        document.getElementById('cart-info').innerText = `${count} Items | ₹${total}`;
+    }
+
+    function filter() {
+        const q = document.getElementById('search').value.toLowerCase();
+        document.querySelectorAll('.item-card').forEach(c => {
+            c.style.display = c.dataset.search.includes(q) ? 'flex' : 'none';
+        });
+    }
+
+    function checkout() {
+        let bill = "*NEW ORDER FROM PONDY PAROTTAS*%0A--------------------------%0A";
+        let total = 0;
+        for (let key in cart) {
+            bill += `*${cart[key].qty} x ${cart[key].name}* - ₹${cart[key].qty * cart[key].price}%0A`;
+            total += cart[key].qty * cart[key].price;
+        }
+        bill += `--------------------------%0A*TOTAL: ₹${total}*%0A%0APlease confirm my order!`;
+        window.open(`https://wa.me/918186004000?text=${bill}`);
+    }
+
+    init();
+</script>
+</body>
+</html>
