@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pondy Parottas | Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --red: #d32f2f; --yellow: #ffc107; --dark: #1a1a1a; --gray: #f8f9fa; }
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { margin: 0; background: var(--gray); scroll-behavior: smooth; }
+
+        /* Navigation */
+        header { background: var(--red); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; cursor: pointer; }
+        nav button { background: none; border: none; color: white; font-weight: 600; margin-left: 20px; cursor: pointer; text-transform: uppercase; font-size: 13px; transition: 0.3s; }
+        nav button:hover { color: var(--yellow); }
+
+        /* Sections Visibility Control */
+        .page-section { display: none; min-height: 90vh; animation: fadeIn 0.5s; }
+        .active-section { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Hero Styling */
+        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1589187151032-573a91317445?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .btn-main { background: var(--yellow); color: var(--dark); padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-main:hover { background: white; transform: scale(1.05); }
+
+        /* Menu Grid */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 4px solid var(--red); transition: 0.3s; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-title { font-weight: 700; font-size: 1.1rem; display: block; }
+        .card-price { color: var(--red); font-weight: 800; font-size: 1.2rem; }
+        .add-btn { background: var(--red); color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; margin-top: 10px; cursor: pointer; font-weight: 600; }
+
+        /* Locations Grid */
+        .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .loc-card { background: white; padding: 25px; border-radius: 12px; border-left: 6px solid var(--red); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        /* Cart & Sidebar */
+        .cart-panel { background: white; padding: 30px; border-radius: 15px; max-width: 500px; margin: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 40px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo" onclick="showPage('home')">PONDY PAROTTAS</div>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('menu')">Full Menu</button>
+        <button onclick="showPage('locations')">Locations</button>
+        <button onclick="showPage('cart')" style="color:var(--yellow)">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+</header>
+
+<section id="home" class="page-section active-section">
+    <div class="hero">
+        <h1>Authentic Tamil Taste</h1>
+        <p>Famous Ambur Biryani & Nool Parottas in Hyderabad</p>
+        <button class="btn-main" onclick="showPage('menu')">START ORDERING</button>
+    </div>
+</section>
+
+<section id="menu" class="page-section">
+    <div class="container">
+        <h2 style="text-align:center; color:var(--red); font-size: 2.5rem;">The Master Menu</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&w=400&q=80" alt="Ambur Biryani">
+                <div class="card-body">
+                    <span class="card-title">Ambur Chicken Biryani</span>
+                    <span class="card-price">₹240.00</span>
+                    <button class="add-btn" onclick="addToCart('Ambur Chicken Biryani', 240)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1626132646529-500637532537?auto=format&fit=crop&w=400&q=80" alt="Nool Parotta">
+                <div class="card-body">
+                    <span class="card-title">2 Pcs Nool Parotta</span>
+                    <span class="card-price">₹50.00</span>
+                    <button class="add-btn" onclick="addToCart('2 Pcs Nool Parotta', 50)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=400&q=80" alt="Kothu Parotta">
+                <div class="card-body">
+                    <span class="card-title">Chicken Kothu Parotta</span>
+                    <span class="card-price">₹280.00</span>
+                    <button class="add-btn" onclick="addToCart('Chicken Kothu Parotta', 280)">Add to Cart</button>
+                </div>
+            </div>
+            </div>
+    </div>
+</section>
+
+<section id="locations" class="page-section">
+    <div class="container">
+        <h2 style="text-align:center; color:var(--red); margin-bottom: 40px;">Our Hyderabad Locations</h2>
+        <div class="loc-grid">
+            <div class="loc-card"><h3>📍 Kukatpally (KPHB)</h3><p>Near Manjeera Mall, Pipeline Rd.</p></div>
+            <div class="loc-card"><h3>📍 Hitech City</h3><p>Near HITEX Road & Kothaguda.</p></div>
+            <div class="loc-card"><h3>📍 SR Nagar</h3><p>Near Metro Station, Madhuranagar.</p></div>
+            <div class="loc-card"><h3>📍 Manikonda</h3><p>Near Sreeram Nagar Colony.</p></div>
+            <div class="loc-card"><h3>📍 Chanda Nagar</h3><p>Pipeline Road Area.</p></div>
+            <div class="loc-card"><h3>📍 Miyapur</h3><p>All-new outlet (Launched Dec 2024).</p></div>
+            <div class="loc-card"><h3>📍 Other Hubs</h3><p>Begumpet, ECIL, Jubilee Hills, Yosufguda.</p></div>
+        </div>
+        <div style="text-align:center; margin-top:30px;">
+            <h3>Direct Contact: 8186004000</h3>
+        </div>
+    </div>
+</section>
+
+<section id="cart" class="page-section">
+    <div class="container">
+        <div class="cart-panel">
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items-list">
+                <p>Your cart is empty.</p>
+            </div>
+            <hr>
+            <h3>Total: ₹<span id="cart-total">0</span></h3>
+            <button class="btn-main" style="width:100%" onclick="processPayment()">PAY NOW</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Pondy Parottas Hyderabad Official | Built for Quality</p>
+</footer>
+
+<script>
+    // PAGE NAVIGATION LOGIC
+    function showPage(pageId) {
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active-section');
+        });
+        document.getElementById(pageId).classList.add('active-section');
+        window.scrollTo(0,0);
+    }
+
+    // CART LOGIC
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+        cart.push({name, price});
+        total += price;
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+        document.getElementById('cart-total').innerText = total;
+        
+        let list = document.getElementById('cart-items-list');
+        if (cart.length === 0) {
+            list.innerHTML = "<p>Your cart is empty.</p>";
+        } else {
+            list.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>₹${item.price}</span>
+                </div>
+            `).join('');
+        }
+    }
+
+    function processPayment() {
+        if (cart.length === 0) {
+            alert("Add items before paying!");
+        } else {
+            alert("Redirecting to Secure Payment Gateway for ₹" + total + "...");
+            // This is where you connect Razorpay/Stripe
+        }
+    }
+</script>
+
+</body>
+</html>
